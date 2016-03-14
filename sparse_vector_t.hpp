@@ -56,6 +56,42 @@ public:
 		return os;
 	}
 
+
+/*el istream igual que el vector_t lo que sucede primer elemento a leer 
+numero de elementos que tiene el vector hecho abajo por Riera
+
+*/
+
+
+		double scal_prod(const vector_t& v) const{
+		
+		double aux= 0;
+		double vect1 = 0;
+		double vect2 = 0;
+		
+		for(int i=0; i < v_.get_sz();i++)
+		{
+				vect1 = v_.get_v(i).get_val();
+				vect2 =v.get_v(v_.get_v(i).get_inx());
+				aux += vect1 * vect2;
+				
+		}
+		return aux;
+	}
+	
+
+
+
+	istream& read(istream& is)
+	{
+		is >> sz_;
+		v_.read(is);
+		
+		return is;
+	}
+
+
+
 private:
 	bool is_not_zero(double val, double eps) { return fabs(val) > eps;}
 

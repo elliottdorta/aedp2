@@ -57,6 +57,15 @@ public:
 		return v_[pos];
 	}
 
+
+	double scal_prod(const vector_t& v) const{
+		
+		double aux= 0;
+		for(int i=0; i <= get_sz();i++)
+			aux += v_[i] * v.get_v(i);
+		return aux;
+	}
+	//MUestra por pantalla formateando
 	ostream& write(ostream& os) const{
 	
 		os << setw(8) <<  sz_ << endl;

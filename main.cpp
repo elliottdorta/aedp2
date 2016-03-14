@@ -2,27 +2,42 @@
 #include "sparse_vector_t.hpp"
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #define V_SZ 10000
 #define EPS  1E-3
 
-int main(void)
+int main(int argc, char* argv[])
 {
-	vector_t v(V_SZ);
 
-	for(int i = 0; i < V_SZ; i++)
-		v.get_set_v(i) = 0.0;
+	if (argc != 3)
+	{
+		cerr << "Usage: " << argv[0] << " vector1.txt vector2.txt" << endl;
+		return -1;
+	}
 
-	v.get_set_v(0)    = 1.0; 
-	v.get_set_v(1000) = 1.0; 
-	v.get_set_v(2000) = 1.0; 
-	v.get_set_v(3000) = 1.0; 
-	v.get_set_v(4000) = 1.0; 
-	v.get_set_v(5000) = 1.0;
+	ifstream vector1;
+	ifstream vector2;
 
-	sparse_vector_t sv(v, EPS);	
+	vector1.open(argv[1]);
+	vector2.open(argv[2]); 
 
-	sv.write(cout);
+	vector_t v1;
+	sparse_vector_t v2;		
+
+	v1.read(vector1);
+	v2.read(vector2);
+
+	v1.write(cout);
+        cout << endl;
+	v2.write(cout);
 	cout << endl;
+	const double sp = v2.scal_prod(v1);
+
+	cout << "La maquina de la verdad dice que el producto escalar es: " << sp << endl;
+
+	vector1.close();
+	vector2.close();
+
 }
