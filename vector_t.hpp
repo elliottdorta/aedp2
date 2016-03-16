@@ -68,10 +68,11 @@ public:
 	//MUestra por pantalla formateando
 	ostream& write(ostream& os) const{
 	
-		os << setw(8) <<  sz_ << endl;
-
+		os<<"El tamaño del vector es" << setw(8) <<  sz_ << endl;
+		cout<<"El vector NO disperso es";
 		for(int i = 0; i < sz_; i ++)
 		 	os << setw(8) << fixed << setprecision(2) << v_[i] << " ";
+		cout<<""<<endl;
 
 
 		return os;
